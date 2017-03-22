@@ -6,6 +6,7 @@ c-base station announcer [![Build Status](https://travis-ci.org/c-base/station-a
 ## Examples of output
 
 > SpaceX flight 1199 to Berlin Brandenburg International is leaving from clamp portal 22
+
 > Security advise. Due to intergalactic regulations, passengers are required to keep their antigravity generators with them at all times.
 
 ## Installation
