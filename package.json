@@ -4,7 +4,7 @@
   "description": "c-base station announcer",
   "main": "index.js",
   "scripts": {
-    "test": "fbp-spec --command \"./node_modules/.bin/noflo-nodejs --register=false --secret=foo --port 3680\" --address \"ws://localhost:3680\" --secret foo spec/*.yaml"
+    "test": "fbp-spec --command \"./node_modules/.bin/noflo-nodejs --register=false --secret=foo --port 3680\" --address \"ws://localhost:3680\" --secret foo spec"
   },
   "repository": {
     "type": "git",
