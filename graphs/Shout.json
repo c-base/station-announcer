@@ -1,0 +1,196 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "Shout",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "MakeAnnouncement": {
+            "component": "station-announcer/Announcer",
+            "metadata": {
+                "label": "MakeAnnouncement",
+                "x": 540,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "c_out": {
+            "component": "mqtt/SendMessage",
+            "metadata": {
+                "label": "c_out",
+                "x": 720,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Debug": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "Debug",
+                "x": 720,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Probability": {
+            "component": "math/Compare",
+            "metadata": {
+                "label": "Probability",
+                "x": 396,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "math/Random_dll27": {
+            "component": "math/Random",
+            "metadata": {
+                "label": "Random",
+                "x": 252,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Repeat_ingi1": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "Repeat",
+                "x": 144,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "MakeAnnouncement",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "c_out",
+                "port": "message"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "MakeAnnouncement",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Debug",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "math/Random_dll27",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Probability",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "Probability",
+                "port": "pass"
+            },
+            "tgt": {
+                "process": "MakeAnnouncement",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "Probability",
+                "port": "fail"
+            },
+            "tgt": {
+                "process": "Debug",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "core/Repeat_ingi1",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "math/Random_dll27",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "data": "10.0.1.17",
+            "tgt": {
+                "process": "c_out",
+                "port": "broker"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "c_out",
+                "port": "retain"
+            }
+        },
+        {
+            "data": "c_out/announce_en",
+            "tgt": {
+                "process": "c_out",
+                "port": "topic"
+            }
+        },
+        {
+            "data": ">=",
+            "tgt": {
+                "process": "Probability",
+                "port": "operator"
+            }
+        },
+        {
+            "data": 0.8,
+            "tgt": {
+                "process": "Probability",
+                "port": "comparison"
+            }
+        },
+        {
+            "data": "c-base",
+            "tgt": {
+                "process": "core/Repeat_ingi1",
+                "port": "in"
+            }
+        }
+    ]
+}
