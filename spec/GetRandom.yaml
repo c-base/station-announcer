@@ -5,7 +5,7 @@ cases:
     name: "Receiving a valid filename"
     assertion: "Should return a string from the file"
     inputs:
-      in: "data/spaceports.yaml"
+      in: "data/spaceport.yaml"
     expect:
       out:
         type: 'string'

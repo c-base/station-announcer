@@ -1,0 +1,2 @@
+- <%= spaceline %> flight <%= flight %> to <%= spaceport %> is leaving from clamp portal <%= portal %>
+- Security advise. Due to <%= region %> regulations, passengers are required to keep their <%= things %> with them at all times.
