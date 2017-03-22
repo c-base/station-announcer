@@ -4,3 +4,11 @@ node_js:
 script:
 - npm test
 - ./bin/station-announcer
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: eDK1XD3LowExXoCZM22pSs5P3qFZleWPLpyYORh5So1JEBYNbk5ZyuxRIyrAA9bPq+RcEV29GxIw5gb0D0sGqGSxqGTndutu8dn8Dxn8aWgPL6eBPXVTy0HUs7hK8JoKcf4j9DvCPszQ38Y48zAv7DHerDjQ/4H5eMDgnaiLGOBxyO/QoU96Fag5gPVAhvkG1P51hAI5pJ6jmxo7r9tYO/49d3rgxPXHfv13kXQPOBwrtWvgScBNHjIvf5aoBfBlLgFYXEpOPakINz99cIbLkFN+HOJSGKkHDvlZQvgo2BiTE4mA3rj7dOKG5+V7EPKmryL/bLkmSBtWiSF06LYRd5P/CPOoGojwRBV/shDf7BHhlqYn0WIPtTRp7fG2m29JHK2Fd1GgsowYjpLUVirndRDciz5fWNh83xhY5tWv7EnLLhb3JvPqgTpYf+w1DXMbXSpIDB+7Xy5NzbqAEOrIdhPjQSPFs/W9omka3btY7l70bEEUVOeRtjEoD6RLShN1nsmck6FM7YBa2YKqKsfSJHGBhBxL7CBx84s/9PTq+cQ5XOpV1WlvTaWwQP0wN6XBDvuk2MhZdgG7y/VQ9iChL9ODTvOw4JLi0E1OBbb1M2Hw4IiPBcH6j4aZmvdwtoVPUPbTdOdlMxeKR5YFC4ZUGeFUyDMh5OMA793uKLZqrG8=
+  on:
+    tags: true
+    repo: c-base/station-announcer
