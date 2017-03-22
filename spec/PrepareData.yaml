@@ -1,0 +1,17 @@
+name: "PrepareData graph"
+topic: "station-announcer/PrepareData"
+cases:
+  -
+    name: "Receiving a data dir"
+    assertion: "Should return an object containing data keys"
+    inputs:
+      in: "data"
+    expect:
+      out:
+        includeKeys:
+          - spaceline
+          - spaceport
+          - region
+          - things
+          - portal
+          - flight
