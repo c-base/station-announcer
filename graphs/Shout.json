@@ -6,8 +6,40 @@
             "type": "noflo-nodejs"
         }
     },
-    "inports": {},
-    "outports": {},
+    "inports": {
+        "in": {
+            "process": "Input",
+            "port": "in",
+            "metadata": {
+                "x": 0,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "core/Merge_nvzbi",
+            "port": "out",
+            "metadata": {
+                "x": 1008,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "Errors",
+            "port": "out",
+            "metadata": {
+                "x": 1008,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
     "groups": [],
     "processes": {
         "MakeAnnouncement": {
@@ -26,16 +58,6 @@
                 "label": "c_out",
                 "x": 720,
                 "y": 180,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "Debug": {
-            "component": "core/Output",
-            "metadata": {
-                "label": "Debug",
-                "x": 720,
-                "y": 324,
                 "width": 72,
                 "height": 72
             }
@@ -60,22 +82,52 @@
                 "height": 72
             }
         },
-        "core/Repeat_ingi1": {
-            "component": "core/Repeat",
+        "Skipped": {
+            "component": "strings/SendString",
             "metadata": {
-                "label": "Repeat",
+                "label": "Skipped",
+                "x": 540,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Input": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "Input",
                 "x": 144,
                 "y": 180,
                 "width": 72,
                 "height": 72
             }
         },
-        "strings/SendString_km2ol": {
-            "component": "strings/SendString",
+        "math/Divide_zj3qc": {
+            "component": "math/Divide",
             "metadata": {
-                "label": "SendString",
-                "x": 540,
+                "label": "Divide",
+                "x": 252,
                 "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Errors": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "Errors",
+                "x": 864,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Merge_nvzbi": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "Merge",
+                "x": 864,
+                "y": 180,
                 "width": 72,
                 "height": 72
             }
@@ -93,19 +145,6 @@
             },
             "metadata": {
                 "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "MakeAnnouncement",
-                "port": "error"
-            },
-            "tgt": {
-                "process": "Debug",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
             }
         },
         {
@@ -136,12 +175,25 @@
         },
         {
             "src": {
-                "process": "core/Repeat_ingi1",
+                "process": "Probability",
+                "port": "fail"
+            },
+            "tgt": {
+                "process": "Skipped",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "Input",
                 "port": "out"
             },
             "tgt": {
-                "process": "math/Random_dll27",
-                "port": "in"
+                "process": "math/Divide_zj3qc",
+                "port": "dividend"
             },
             "metadata": {
                 "route": 2
@@ -149,37 +201,76 @@
         },
         {
             "src": {
-                "process": "Probability",
-                "port": "fail"
+                "process": "math/Divide_zj3qc",
+                "port": "quotient"
             },
             "tgt": {
-                "process": "strings/SendString_km2ol",
-                "port": "in"
+                "process": "Probability",
+                "port": "comparison"
             },
             "metadata": {
-                "route": 9
+                "route": 2
             }
         },
         {
             "src": {
-                "process": "strings/SendString_km2ol",
+                "process": "Input",
                 "port": "out"
             },
             "tgt": {
-                "process": "Debug",
+                "process": "math/Random_dll27",
                 "port": "in"
             },
             "metadata": {
-                "route": 9
+                "route": 0
             }
         },
         {
             "src": {
                 "process": "MakeAnnouncement",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "c_out",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "Skipped",
                 "port": "out"
             },
             "tgt": {
-                "process": "Debug",
+                "process": "core/Merge_nvzbi",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "c_out",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Merge_nvzbi",
                 "port": "in"
             },
             "metadata": {
@@ -208,31 +299,24 @@
             }
         },
         {
-            "data": ">=",
+            "data": "No announcement this time. Play again!",
+            "tgt": {
+                "process": "Skipped",
+                "port": "string"
+            }
+        },
+        {
+            "data": "<=",
             "tgt": {
                 "process": "Probability",
                 "port": "operator"
             }
         },
         {
-            "data": 0.8,
+            "data": "100",
             "tgt": {
-                "process": "Probability",
-                "port": "comparison"
-            }
-        },
-        {
-            "data": "c-base",
-            "tgt": {
-                "process": "core/Repeat_ingi1",
-                "port": "in"
-            }
-        },
-        {
-            "data": "No announcement this time. Play again!",
-            "tgt": {
-                "process": "strings/SendString_km2ol",
-                "port": "string"
+                "process": "math/Divide_zj3qc",
+                "port": "divisor"
             }
         }
     ]
