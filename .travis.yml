@@ -3,7 +3,7 @@ node_js:
 - '6'
 script:
 - npm test
-- ./bin/station-announcer
+- ./bin/station-announcer-textonly
 deploy:
   provider: npm
   email: henri.bergius@iki.fi
