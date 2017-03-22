@@ -5,9 +5,15 @@ c-base station announcer [![Build Status](https://travis-ci.org/c-base/station-a
 
 ## Examples of output
 
-> SpaceX flight 1199 to Berlin Brandenburg International is leaving from clamp portal 22
-
 > Security advise. Due to intergalactic regulations, passengers are required to keep their antigravity generators with them at all times.
+
+> Passengers to Berlin Brandeburg International. Please be adviced that the spaceport is unlikely to ever exist in this spacetime continuum
+
+> Weyland Yutani launch 113 to Kapteyn B is leaving from clamp portal 32
+
+> Passenger Adams proceed immediately to pod bay 41. You are delaying the shuttle
+
+> Starship Titanic launch to Kepler 62 has been delayed due to death star sighting. Estimated departure in 1203 years
 
 ## Installation
 
