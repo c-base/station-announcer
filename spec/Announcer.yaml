@@ -1,0 +1,11 @@
+name: "Announcer graph"
+topic: "station-announcer/Announcer"
+cases:
+  -
+    name: "Receiving a start packet"
+    assertion: "Should return a random templated string"
+    inputs:
+      in: "c-base"
+    expect:
+      out:
+        type: 'string'
