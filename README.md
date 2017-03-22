@@ -28,10 +28,18 @@ $ npm install station-announcer -g
 Once installed, you can run it with:
 
 ```bash
-$ station-announcer
+$ station-announcer-textonly
 ```
 
 The announcements will be written to STDOUT.
+
+If you're in c-base crew network you can only trigger these in audio with:
+
+```bash
+$ station-announcer
+```
+
+(Note: only triggers an announcement with 20% probability)
 
 ## Using with NoFlo
 
