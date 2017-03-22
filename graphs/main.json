@@ -6,56 +6,78 @@
             "type": "noflo-nodejs"
         }
     },
-    "inports": {},
-    "outports": {},
+    "inports": {
+        "in": {
+            "process": "Start",
+            "port": "in",
+            "metadata": {
+                "x": -252,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "error": {
+            "process": "Errors",
+            "port": "out",
+            "metadata": {
+                "x": 576,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "out": {
+            "process": "ProduceString",
+            "port": "out",
+            "metadata": {
+                "x": 576,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
     "groups": [],
     "processes": {
-        "strings/StringTemplate_194zp": {
+        "ProduceString": {
             "component": "strings/StringTemplate",
             "metadata": {
-                "label": "StringTemplate",
-                "x": 828,
-                "y": 108,
+                "label": "ProduceString",
+                "x": 396,
+                "y": 0,
                 "width": 72,
                 "height": 72
             }
         },
-        "core/Output_32xtr": {
-            "component": "core/Output",
-            "metadata": {
-                "label": "Output",
-                "x": 1008,
-                "y": 108,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "station-announcer/GetRandom_juszk": {
+        "ChooseTemplate": {
             "component": "station-announcer/GetRandom",
             "metadata": {
-                "label": "GetRandom",
-                "x": 396,
-                "y": 288,
+                "label": "ChooseTemplate",
+                "x": 216,
+                "y": 144,
                 "width": 72,
                 "height": 72
             }
         },
-        "strings/SendString_4s4n5": {
+        "TmplFile": {
             "component": "strings/SendString",
             "metadata": {
-                "label": "SendString",
+                "label": "TmplFile",
                 "x": 108,
-                "y": 288,
+                "y": 144,
                 "width": 72,
                 "height": 72
             }
         },
-        "strings/SendString_2o0zs": {
+        "DataDir": {
             "component": "strings/SendString",
             "metadata": {
-                "label": "SendString",
+                "label": "DataDir",
                 "x": 108,
-                "y": -36,
+                "y": 0,
                 "width": 72,
                 "height": 72
             }
@@ -64,7 +86,7 @@
             "component": "station-announcer/PrepareData",
             "metadata": {
                 "label": "PrepareData",
-                "x": 324,
+                "x": 216,
                 "y": 0,
                 "width": 72,
                 "height": 72
@@ -74,16 +96,16 @@
             "component": "core/Merge",
             "metadata": {
                 "label": "Errors",
-                "x": 720,
-                "y": 360,
+                "x": 396,
+                "y": 144,
                 "width": 72,
                 "height": 72
             }
         },
-        "core/Repeat_dt66m": {
+        "Start": {
             "component": "core/Repeat",
             "metadata": {
-                "label": "Repeat",
+                "label": "Start",
                 "x": -108,
                 "y": 72,
                 "width": 72,
@@ -94,42 +116,33 @@
     "connections": [
         {
             "src": {
-                "process": "strings/StringTemplate_194zp",
+                "process": "ChooseTemplate",
                 "port": "out"
             },
             "tgt": {
-                "process": "core/Output_32xtr",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 0
-            }
-        },
-        {
-            "src": {
-                "process": "station-announcer/GetRandom_juszk",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "strings/StringTemplate_194zp",
+                "process": "ProduceString",
                 "port": "template"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
-                "process": "strings/SendString_4s4n5",
+                "process": "TmplFile",
                 "port": "out"
             },
             "tgt": {
-                "process": "station-announcer/GetRandom_juszk",
+                "process": "ChooseTemplate",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 2
+            }
         },
         {
             "src": {
-                "process": "strings/SendString_2o0zs",
+                "process": "DataDir",
                 "port": "out"
             },
             "tgt": {
@@ -137,7 +150,7 @@
                 "port": "in"
             },
             "metadata": {
-                "route": null
+                "route": 2
             }
         },
         {
@@ -146,14 +159,16 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "strings/StringTemplate_194zp",
+                "process": "ProduceString",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 6
+            }
         },
         {
             "src": {
-                "process": "station-announcer/GetRandom_juszk",
+                "process": "ChooseTemplate",
                 "port": "error"
             },
             "tgt": {
@@ -179,60 +194,42 @@
         },
         {
             "src": {
-                "process": "Errors",
+                "process": "Start",
                 "port": "out"
             },
             "tgt": {
-                "process": "core/Output_32xtr",
+                "process": "DataDir",
                 "port": "in"
             },
             "metadata": {
-                "route": 1
+                "route": 2
             }
         },
         {
             "src": {
-                "process": "core/Repeat_dt66m",
+                "process": "Start",
                 "port": "out"
             },
             "tgt": {
-                "process": "strings/SendString_2o0zs",
-                "port": "in"
-            },
-            "metadata": {}
-        },
-        {
-            "src": {
-                "process": "core/Repeat_dt66m",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "strings/SendString_4s4n5",
+                "process": "TmplFile",
                 "port": "in"
             },
             "metadata": {
-                "route": 0
+                "route": 2
             }
         },
         {
             "data": "data",
             "tgt": {
-                "process": "strings/SendString_2o0zs",
+                "process": "DataDir",
                 "port": "string"
             }
         },
         {
             "data": "templates.yaml",
             "tgt": {
-                "process": "strings/SendString_4s4n5",
+                "process": "TmplFile",
                 "port": "string"
-            }
-        },
-        {
-            "data": "start",
-            "tgt": {
-                "process": "core/Repeat_dt66m",
-                "port": "in"
             }
         }
     ]
