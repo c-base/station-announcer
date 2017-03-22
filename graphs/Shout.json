@@ -69,6 +69,16 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "strings/SendString_km2ol": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 540,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "connections": [
@@ -126,8 +136,34 @@
         },
         {
             "src": {
+                "process": "core/Repeat_ingi1",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "math/Random_dll27",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
                 "process": "Probability",
                 "port": "fail"
+            },
+            "tgt": {
+                "process": "strings/SendString_km2ol",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_km2ol",
+                "port": "out"
             },
             "tgt": {
                 "process": "Debug",
@@ -139,15 +175,15 @@
         },
         {
             "src": {
-                "process": "core/Repeat_ingi1",
+                "process": "MakeAnnouncement",
                 "port": "out"
             },
             "tgt": {
-                "process": "math/Random_dll27",
+                "process": "Debug",
                 "port": "in"
             },
             "metadata": {
-                "route": 2
+                "route": 4
             }
         },
         {
@@ -190,6 +226,13 @@
             "tgt": {
                 "process": "core/Repeat_ingi1",
                 "port": "in"
+            }
+        },
+        {
+            "data": "No announcement this time. Play again!",
+            "tgt": {
+                "process": "strings/SendString_km2ol",
+                "port": "string"
             }
         }
     ]
