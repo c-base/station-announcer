@@ -21,22 +21,22 @@
         }
     },
     "outports": {
-        "out": {
-            "process": "objects/SetPropertyValue_zmygh",
-            "port": "out",
-            "metadata": {
-                "x": 1548,
-                "y": 72,
-                "width": 72,
-                "height": 72
-            }
-        },
         "error": {
             "process": "Errors",
             "port": "out",
             "metadata": {
-                "x": 1548,
+                "x": 1692,
                 "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "out": {
+            "process": "groups/RemoveGroups_kielx",
+            "port": "out",
+            "metadata": {
+                "x": 1692,
+                "y": 72,
                 "width": 72,
                 "height": 72
             }
@@ -187,6 +187,16 @@
                 "label": "Split",
                 "x": 36,
                 "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "groups/RemoveGroups_kielx": {
+            "component": "groups/RemoveGroups",
+            "metadata": {
+                "label": "RemoveGroups",
+                "x": 1548,
+                "y": 72,
                 "width": 72,
                 "height": 72
             }
@@ -412,6 +422,19 @@
             },
             "metadata": {
                 "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "objects/SetPropertyValue_zmygh",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "groups/RemoveGroups_kielx",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
             }
         },
         {
