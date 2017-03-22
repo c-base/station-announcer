@@ -1,0 +1,209 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "GetRandom",
+        "environment": {
+            "type": "noflo-nodejs",
+            "content": ""
+        },
+        "description": "Get a random member from a YAML file",
+        "icon": "magic"
+    },
+    "inports": {
+        "in": {
+            "process": "core/Split_pwgr9",
+            "port": "in",
+            "metadata": {
+                "x": -36,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "error": {
+            "process": "core/Merge_uxbho",
+            "port": "out",
+            "metadata": {
+                "x": 792,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "out": {
+            "process": "station-announcer/GetRandomMember_kdvkv",
+            "port": "out",
+            "metadata": {
+                "x": 792,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [],
+    "processes": {
+        "station-announcer/GetRandomMember_kdvkv": {
+            "component": "station-announcer/GetRandomMember",
+            "metadata": {
+                "label": "GetRandomMember",
+                "x": 504,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "filesystem/ReadFile_6vlqs": {
+            "component": "filesystem/ReadFile",
+            "metadata": {
+                "label": "ReadFile",
+                "x": 252,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Merge_uxbho": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "Merge",
+                "x": 648,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "yaml/ParseYaml_x4oe6": {
+            "component": "yaml/ParseYaml",
+            "metadata": {
+                "label": "ParseYaml",
+                "x": 360,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "math/Random_myz8k": {
+            "component": "math/Random",
+            "metadata": {
+                "label": "Random",
+                "x": 360,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Split_pwgr9": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "Split",
+                "x": 108,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "filesystem/ReadFile_6vlqs",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "yaml/ParseYaml_x4oe6",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "yaml/ParseYaml_x4oe6",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "station-announcer/GetRandomMember_kdvkv",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFile_6vlqs",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_uxbho",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "yaml/ParseYaml_x4oe6",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_uxbho",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "math/Random_myz8k",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "station-announcer/GetRandomMember_kdvkv",
+                "port": "random"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_pwgr9",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "math/Random_myz8k",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_pwgr9",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "filesystem/ReadFile_6vlqs",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "data": "utf-8",
+            "tgt": {
+                "process": "filesystem/ReadFile_6vlqs",
+                "port": "encoding"
+            }
+        }
+    ]
+}
