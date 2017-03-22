@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-var announcer = require('../index');
-announcer('c-base', function (err, result) {
+var announcer = require('../index').shout
+announcer(10, function (err, result) {
   if (err) {
     console.error(err);
     process.exit(1);

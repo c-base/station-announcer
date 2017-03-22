@@ -27,6 +27,7 @@
     "noflo": "^0.8.3",
     "noflo-filesystem": "^1.1.1",
     "noflo-math": "^0.1.1",
+    "noflo-mqtt": "^0.3.1",
     "noflo-yaml": "^0.3.0"
   },
   "devDependencies": {

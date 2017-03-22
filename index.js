@@ -1,4 +1,7 @@
 var noflo = require('noflo');
-module.exports = noflo.asCallback('station-announcer/Announcer', {
+exports.announcer = noflo.asCallback('station-announcer/Announcer', {
+  baseDir: __dirname
+});
+exports.shout = noflo.asCallback('station-announcer/Shout', {
   baseDir: __dirname
 });
