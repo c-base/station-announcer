@@ -480,13 +480,6 @@
             }
         },
         {
-            "data": 1,
-            "tgt": {
-                "process": "math/RangedRandomInt_qqmw2",
-                "port": "lower"
-            }
-        },
-        {
             "data": 1337,
             "tgt": {
                 "process": "math/RangedRandomInt_qqmw2",
@@ -505,6 +498,13 @@
             "tgt": {
                 "process": "objects/SetPropertyValue_zmygh",
                 "port": "keep"
+            }
+        },
+        {
+            "data": 128,
+            "tgt": {
+                "process": "math/RangedRandomInt_qqmw2",
+                "port": "lower"
             }
         }
     ]
