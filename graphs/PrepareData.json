@@ -4,7 +4,9 @@
         "name": "PrepareData",
         "environment": {
             "type": "noflo-nodejs"
-        }
+        },
+        "description": "Prepare random data object to be used in announcements",
+        "icon": "space-shuttle"
     },
     "inports": {
         "in": {
