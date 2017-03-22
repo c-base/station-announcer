@@ -1,0 +1,7 @@
+[Unit]
+Description=Make station announcements
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/bergie/station-announcer
+ExecStart=/usr/bin/sh -c './bin/station-announcer >> /tmp/announcer'

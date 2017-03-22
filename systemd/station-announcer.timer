@@ -1,0 +1,5 @@
+[Unit]
+Description=Run station-announcer.service every 10 minutes
+
+[Timer]
+OnCalendar=*:0/10
