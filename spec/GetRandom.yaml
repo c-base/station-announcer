@@ -1,0 +1,19 @@
+name: "GetRandom graph"
+topic: "station-announcer/GetRandom"
+cases:
+  -
+    name: "Receiving a valid filename"
+    assertion: "Should return a string from the file"
+    inputs:
+      in: "data/spaceports.yaml"
+    expect:
+      out:
+        type: 'string'
+  -
+    name: "Receiving a invalid filename"
+    assertion: "Should return an error"
+    inputs:
+      in: "data/_not_found.yaml"
+    expect:
+      error:
+        type: 'object'
