@@ -1,0 +1,239 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "main",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "strings/StringTemplate_194zp": {
+            "component": "strings/StringTemplate",
+            "metadata": {
+                "label": "StringTemplate",
+                "x": 828,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Output_32xtr": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "Output",
+                "x": 1008,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "station-announcer/GetRandom_juszk": {
+            "component": "station-announcer/GetRandom",
+            "metadata": {
+                "label": "GetRandom",
+                "x": 396,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_4s4n5": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 108,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_2o0zs": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 108,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "station-announcer/PrepareData_fr3ll": {
+            "component": "station-announcer/PrepareData",
+            "metadata": {
+                "label": "PrepareData",
+                "x": 324,
+                "y": 0,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Errors": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "Errors",
+                "x": 720,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Repeat_dt66m": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "Repeat",
+                "x": -108,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "strings/StringTemplate_194zp",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_32xtr",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "station-announcer/GetRandom_juszk",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/StringTemplate_194zp",
+                "port": "template"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/SendString_4s4n5",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "station-announcer/GetRandom_juszk",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/SendString_2o0zs",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "station-announcer/PrepareData_fr3ll",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "station-announcer/PrepareData_fr3ll",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/StringTemplate_194zp",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "station-announcer/GetRandom_juszk",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "station-announcer/PrepareData_fr3ll",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "Errors",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_32xtr",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "core/Repeat_dt66m",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_2o0zs",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Repeat_dt66m",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_4s4n5",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "data": "data",
+            "tgt": {
+                "process": "strings/SendString_2o0zs",
+                "port": "string"
+            }
+        },
+        {
+            "data": "templates.yaml",
+            "tgt": {
+                "process": "strings/SendString_4s4n5",
+                "port": "string"
+            }
+        },
+        {
+            "data": "start",
+            "tgt": {
+                "process": "core/Repeat_dt66m",
+                "port": "in"
+            }
+        }
+    ]
+}

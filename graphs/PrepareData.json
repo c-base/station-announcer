@@ -1,0 +1,486 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "PrepareData",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {
+        "in": {
+            "process": "core/Split_s20nb",
+            "port": "in",
+            "metadata": {
+                "x": -72,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "objects/SetPropertyValue_zmygh",
+            "port": "out",
+            "metadata": {
+                "x": 1548,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "error": {
+            "process": "Errors",
+            "port": "out",
+            "metadata": {
+                "x": 1548,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [
+        {
+            "name": "Data files",
+            "nodes": [
+                "filesystem/ReadDir_o92su",
+                "groups/CollectTree_n9pks",
+                "groups/MapGroup_qtv3b",
+                "station-announcer/GetRandom_m5it1"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Numbers",
+            "nodes": [
+                "math/RangedRandomInt_3eutb",
+                "math/RangedRandomInt_qqmw2",
+                "objects/SetPropertyValue_lydeu",
+                "objects/SetPropertyValue_zmygh",
+                "strings/SendString_hmrlj",
+                "strings/SendString_vy0cs"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        }
+    ],
+    "processes": {
+        "station-announcer/GetRandom_m5it1": {
+            "component": "station-announcer/GetRandom",
+            "metadata": {
+                "label": "GetRandom",
+                "x": 360,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "filesystem/ReadDir_o92su": {
+            "component": "filesystem/ReadDir",
+            "metadata": {
+                "label": "ReadDir",
+                "x": 216,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "groups/MapGroup_qtv3b": {
+            "component": "groups/MapGroup",
+            "metadata": {
+                "label": "MapGroup",
+                "x": 504,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "groups/CollectTree_n9pks": {
+            "component": "groups/CollectTree",
+            "metadata": {
+                "label": "CollectTree",
+                "x": 648,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "math/RangedRandomInt_3eutb": {
+            "component": "math/RangedRandomInt",
+            "metadata": {
+                "label": "RangedRandomInt",
+                "x": 936,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "objects/SetPropertyValue_lydeu": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetPropertyValue",
+                "x": 1044,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_vy0cs": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 936,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_hmrlj": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 1260,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "math/RangedRandomInt_qqmw2": {
+            "component": "math/RangedRandomInt",
+            "metadata": {
+                "label": "RangedRandomInt",
+                "x": 1260,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "objects/SetPropertyValue_zmygh": {
+            "component": "objects/SetPropertyValue",
+            "metadata": {
+                "label": "SetPropertyValue",
+                "x": 1404,
+                "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Errors": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "Errors",
+                "x": 936,
+                "y": 288,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Split_s20nb": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "Split",
+                "x": 36,
+                "y": -36,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "filesystem/ReadDir_o92su",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "station-announcer/GetRandom_m5it1",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "station-announcer/GetRandom_m5it1",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "groups/MapGroup_qtv3b",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "groups/MapGroup_qtv3b",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "groups/CollectTree_n9pks",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "math/RangedRandomInt_3eutb",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/SetPropertyValue_lydeu",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "groups/CollectTree_n9pks",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/SetPropertyValue_lydeu",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "groups/CollectTree_n9pks",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_vy0cs",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_vy0cs",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/SetPropertyValue_lydeu",
+                "port": "property"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "math/RangedRandomInt_qqmw2",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/SetPropertyValue_zmygh",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_hmrlj",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/SetPropertyValue_zmygh",
+                "port": "property"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "objects/SetPropertyValue_lydeu",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/SetPropertyValue_zmygh",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "objects/SetPropertyValue_lydeu",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_hmrlj",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadDir_o92su",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "station-announcer/GetRandom_m5it1",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "groups/CollectTree_n9pks",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "Errors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_s20nb",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "math/RangedRandomInt_3eutb",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_s20nb",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "math/RangedRandomInt_qqmw2",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_s20nb",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "filesystem/ReadDir_o92su",
+                "port": "source"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "data": "data\\/([a-z]+)\\.yaml=$1",
+            "tgt": {
+                "process": "groups/MapGroup_qtv3b",
+                "port": "regexp"
+            }
+        },
+        {
+            "data": 1,
+            "tgt": {
+                "process": "groups/CollectTree_n9pks",
+                "port": "level"
+            }
+        },
+        {
+            "data": 1,
+            "tgt": {
+                "process": "math/RangedRandomInt_3eutb",
+                "port": "lower"
+            }
+        },
+        {
+            "data": 42,
+            "tgt": {
+                "process": "math/RangedRandomInt_3eutb",
+                "port": "upper"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "objects/SetPropertyValue_lydeu",
+                "port": "keep"
+            }
+        },
+        {
+            "data": "portal",
+            "tgt": {
+                "process": "strings/SendString_vy0cs",
+                "port": "string"
+            }
+        },
+        {
+            "data": 1,
+            "tgt": {
+                "process": "math/RangedRandomInt_qqmw2",
+                "port": "lower"
+            }
+        },
+        {
+            "data": 1337,
+            "tgt": {
+                "process": "math/RangedRandomInt_qqmw2",
+                "port": "upper"
+            }
+        },
+        {
+            "data": "flight",
+            "tgt": {
+                "process": "strings/SendString_hmrlj",
+                "port": "string"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "objects/SetPropertyValue_zmygh",
+                "port": "keep"
+            }
+        }
+    ]
+}
