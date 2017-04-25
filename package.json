@@ -32,7 +32,7 @@
     "noflo-yaml": "^0.3.0"
   },
   "devDependencies": {
-    "fbp-spec": "^0.2.0",
+    "fbp-spec": "^0.2.1",
     "noflo-nodejs": "^0.8.1"
   }
 }
