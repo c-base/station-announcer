@@ -1,4 +1,4 @@
-c-base station announcer [![Build Status](https://travis-ci.org/c-base/station-announcer.svg?branch=master)](https://travis-ci.org/c-base/station-announcer)
+c-base station announcer [![Build Status](https://travis-ci.org/c-base/station-announcer.svg?branch=master)](https://travis-ci.org/c-base/station-announcer) [![Greenkeeper badge](https://badges.greenkeeper.io/c-base/station-announcer.svg)](https://greenkeeper.io/)
 ========================
 
 [c-base](https://c-base.org) is a space station, and space stations have announcements. This project can produce them. Plenty of!
