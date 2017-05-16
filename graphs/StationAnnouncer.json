@@ -1,0 +1,263 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "StationAnnouncer",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {
+        "propability": {
+            "process": "ToFloat",
+            "port": "dividend",
+            "metadata": {
+                "x": 396,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "in": {
+            "process": "core/Split_t0beb",
+            "port": "in",
+            "metadata": {
+                "x": 396,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "skipped": {
+            "process": "SendSkipped",
+            "port": "out",
+            "metadata": {
+                "x": 1224,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "out": {
+            "process": "MakeAnnouncement",
+            "port": "out",
+            "metadata": {
+                "x": 1224,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [],
+    "processes": {
+        "MakeAnnouncement": {
+            "component": "station-announcer/Announcer",
+            "metadata": {
+                "label": "MakeAnnouncement",
+                "x": 972,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "CheckPropability": {
+            "component": "math/Compare",
+            "metadata": {
+                "label": "CheckPropability",
+                "x": 828,
+                "y": 396,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ToFloat": {
+            "component": "math/Divide",
+            "metadata": {
+                "label": "ToFloat",
+                "x": 540,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendSkipped": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendSkipped",
+                "x": 972,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "GenerateChance": {
+            "component": "math/Random",
+            "metadata": {
+                "label": "GenerateChance",
+                "x": 684,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "LogError": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "LogError",
+                "x": 1224,
+                "y": 612,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "strings/SendString_hp3l6": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "SendString",
+                "x": 684,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Split_t0beb": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "Split",
+                "x": 540,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "CheckPropability",
+                "port": "pass"
+            },
+            "tgt": {
+                "process": "MakeAnnouncement",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "CheckPropability",
+                "port": "fail"
+            },
+            "tgt": {
+                "process": "SendSkipped",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 9
+            }
+        },
+        {
+            "src": {
+                "process": "GenerateChance",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "CheckPropability",
+                "port": "value"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "MakeAnnouncement",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "LogError",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_hp3l6",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "CheckPropability",
+                "port": "comparison"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "ToFloat",
+                "port": "quotient"
+            },
+            "tgt": {
+                "process": "strings/SendString_hp3l6",
+                "port": "string"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_t0beb",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_hp3l6",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_t0beb",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "GenerateChance",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "data": "100",
+            "tgt": {
+                "process": "ToFloat",
+                "port": "divisor"
+            }
+        },
+        {
+            "data": "No announcement this time",
+            "tgt": {
+                "process": "SendSkipped",
+                "port": "string"
+            }
+        },
+        {
+            "data": "<=",
+            "tgt": {
+                "process": "CheckPropability",
+                "port": "operator"
+            }
+        }
+    ]
+}
