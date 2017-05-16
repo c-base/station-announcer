@@ -4,7 +4,9 @@
         "name": "StationAnnouncer",
         "environment": {
             "type": "noflo-nodejs"
-        }
+        },
+        "description": "Generate random station announcements at given propability",
+        "icon": "space-shuttle"
     },
     "inports": {
         "propability": {
