@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>c-base space station</title>
+    <style type="text/css">
+      @font-face {
+        font-family: "ceva";
+        src: url("./fonts/ceva-c2.woff") format('woff');
+      }
+      @font-face {
+        font-family: "ceva";
+        src: url("./fonts/ceva-c2.ttf") format('ttf');
+      }
+      body {
+        background: url('./images/stars.jpg') no-repeat #5a7a8e;
+        background-size: 'cover';
+        font-family: sans-serif;
+      }
+      h1 {
+        font-family: "ceva", sans-serif;
+        margin-left: auto;
+        margin-right: auto;
+        color: #ffffff;
+        text-align: center;
+        margin-top: 20px;
+      }
+      p#announcement {
+        margin-left: auto;
+        margin-right: auto;
+        color: #ffffff;
+        font-size: 42px;
+        text-align: center;
+        margin-top: 160px;
+        width: 60%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>c-base space station</h1>
+    <p id="announcement">
+    </p>
+    <script>
+      var fallback = 'Security advise. Due to intergalactic regulations, passengers are required to keep their antigravity generators with them at all times.';
+      document.addEventListener('DOMContentLoaded', function () {
+        var message = fallback;
+        if (window.location.search) {
+          message = decodeURIComponent(window.location.search.substr(1));
+        }
+        document.getElementById('announcement').innerHTML = message;
+      });
+    </script>
+  </body>
+</html>
