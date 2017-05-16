@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+var Promise = require('bluebird');
+var announcer = Promise.promisify(require('../index').announcer);
+var arr = [];
+var i = 0;
+while (i < 50) {
+  arr.push(i);
+  i++;
+}
+Promise.map(arr, function (idx) {
+  return announcer('c-base');
+})
+.then(function (results) {
+  console.log(results.join('\n\n'));
+});
