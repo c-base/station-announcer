@@ -1,0 +1,5 @@
+[Unit]
+Description=Run station-announcer-timed.service every 27 minutes
+
+[Timer]
+OnCalendar=*:0/27
