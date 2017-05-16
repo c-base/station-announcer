@@ -9,22 +9,22 @@
         "icon": "space-shuttle"
     },
     "inports": {
-        "propability": {
-            "process": "ToFloat",
-            "port": "dividend",
-            "metadata": {
-                "x": 396,
-                "y": 468,
-                "width": 72,
-                "height": 72
-            }
-        },
         "in": {
             "process": "core/Split_t0beb",
             "port": "in",
             "metadata": {
                 "x": 396,
                 "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "probability": {
+            "process": "ToFloat",
+            "port": "dividend",
+            "metadata": {
+                "x": 396,
+                "y": 468,
                 "width": 72,
                 "height": 72
             }
@@ -64,10 +64,10 @@
                 "height": 72
             }
         },
-        "CheckPropability": {
+        "CheckProbability": {
             "component": "math/Compare",
             "metadata": {
-                "label": "CheckPropability",
+                "label": "CheckProbability",
                 "x": 828,
                 "y": 396,
                 "width": 72,
@@ -138,7 +138,7 @@
     "connections": [
         {
             "src": {
-                "process": "CheckPropability",
+                "process": "CheckProbability",
                 "port": "pass"
             },
             "tgt": {
@@ -151,7 +151,7 @@
         },
         {
             "src": {
-                "process": "CheckPropability",
+                "process": "CheckProbability",
                 "port": "fail"
             },
             "tgt": {
@@ -168,7 +168,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "CheckPropability",
+                "process": "CheckProbability",
                 "port": "value"
             },
             "metadata": {
@@ -194,7 +194,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "CheckPropability",
+                "process": "CheckProbability",
                 "port": "comparison"
             },
             "metadata": {
@@ -257,7 +257,7 @@
         {
             "data": "<=",
             "tgt": {
-                "process": "CheckPropability",
+                "process": "CheckProbability",
                 "port": "operator"
             }
         }
