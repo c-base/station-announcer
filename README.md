@@ -7,7 +7,7 @@ c-base station announcer [![Build Status](https://travis-ci.org/c-base/station-a
 
 > Security advise. Due to intergalactic regulations, passengers are required to keep their antigravity generators with them at all times.
 
-> Passengers to Berlin Brandeburg International. Please be adviced that the spaceport is unlikely to ever exist in this spacetime continuum
+> Passengers to Berlin Brandenburg International. Please be adviced that the spaceport is unlikely to ever exist in this spacetime continuum
 
 > Weyland Yutani launch 113 to Kapteyn B is leaving from clamp portal 32
 
