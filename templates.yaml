@@ -14,3 +14,4 @@
 - Public service announcement. This is a round world, not a flat one
 - Passengers to Berlin Brandenburg International. Please be adviced that the spaceport is unlikely to ever exist in this spacetime continuum
 - <%= spaceline %> would like to remind you that carriage of <%= consumable %> across <%= region %> borders requires a permit
+- <%= spaceline %> <%= transport %> from <%= spaceport %> has docked with c-base space station
