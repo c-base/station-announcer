@@ -28,6 +28,16 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "announce": {
+            "process": "MakeAnnouncement",
+            "port": "in",
+            "metadata": {
+                "x": 396,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "outports": {
