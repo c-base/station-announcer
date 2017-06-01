@@ -9,9 +9,15 @@ cases:
     expect:
       out:
         includeKeys:
+          - consumable
+          - gate
+          - identification
+          - person
+          - problem
+          - region
+          - service
           - spaceline
           - spaceport
-          - region
           - things
-          - portal
-          - flight
+          - timeunit
+          - transport
