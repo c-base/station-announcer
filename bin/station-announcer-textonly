@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 var announcer = require('../index').announcer;
-announcer('c-base', function (err, result) {
+announcer({announce: 'c-base'}, function (err, result) {
   if (err) {
     console.error(err);
     process.exit(1);
   }
-  console.log(result);
+  console.log(result.out);
 });

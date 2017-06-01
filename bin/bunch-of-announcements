@@ -8,7 +8,10 @@ while (i < 50) {
   i++;
 }
 Promise.map(arr, function (idx) {
-  return announcer('c-base');
+  return announcer({announce: 'c-base'})
+  .then(function (res) {
+    return res.out;
+  });
 })
 .then(function (results) {
   console.log(results.join('\n\n'));
