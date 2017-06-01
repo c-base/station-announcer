@@ -13,7 +13,7 @@
             "process": "core/Split_s20nb",
             "port": "in",
             "metadata": {
-                "x": -72,
+                "x": -144,
                 "y": -36,
                 "width": 72,
                 "height": 72
@@ -85,8 +85,8 @@
             "component": "filesystem/ReadDir",
             "metadata": {
                 "label": "ReadDir",
-                "x": 216,
-                "y": -36,
+                "x": 252,
+                "y": -108,
                 "width": 72,
                 "height": 72
             }
@@ -185,7 +185,7 @@
             "component": "core/Split",
             "metadata": {
                 "label": "Split",
-                "x": 36,
+                "x": -36,
                 "y": -36,
                 "width": 72,
                 "height": 72
@@ -197,6 +197,16 @@
                 "label": "RemoveGroups",
                 "x": 1548,
                 "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "groups/RemoveGroups_pod3e": {
+            "component": "groups/RemoveGroups",
+            "metadata": {
+                "label": "RemoveGroups",
+                "x": 108,
+                "y": -108,
                 "width": 72,
                 "height": 72
             }
@@ -413,7 +423,20 @@
         },
         {
             "src": {
-                "process": "core/Split_s20nb",
+                "process": "objects/SetPropertyValue_zmygh",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "groups/RemoveGroups_kielx",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "groups/RemoveGroups_pod3e",
                 "port": "out"
             },
             "tgt": {
@@ -426,15 +449,15 @@
         },
         {
             "src": {
-                "process": "objects/SetPropertyValue_zmygh",
+                "process": "core/Split_s20nb",
                 "port": "out"
             },
             "tgt": {
-                "process": "groups/RemoveGroups_kielx",
+                "process": "groups/RemoveGroups_pod3e",
                 "port": "in"
             },
             "metadata": {
-                "route": 4
+                "route": 2
             }
         },
         {
