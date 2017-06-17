@@ -489,13 +489,6 @@
             }
         },
         {
-            "data": false,
-            "tgt": {
-                "process": "objects/SetPropertyValue_lydeu",
-                "port": "keep"
-            }
-        },
-        {
             "data": "portal",
             "tgt": {
                 "process": "strings/SendString_vy0cs",
@@ -514,13 +507,6 @@
             "tgt": {
                 "process": "strings/SendString_hmrlj",
                 "port": "string"
-            }
-        },
-        {
-            "data": false,
-            "tgt": {
-                "process": "objects/SetPropertyValue_zmygh",
-                "port": "keep"
             }
         },
         {
