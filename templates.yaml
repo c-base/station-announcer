@@ -5,7 +5,7 @@
 - <%= spaceline %> <%= transport %> to <%= spaceport %> has been delayed due to <%= problem %>. Estimated departure in <%= flight %> <%= timeunit %>
 - <%= spaceline %> <%= transport %> to <%= spaceport %> has been cancelled due to <%= problem %>
 - Passengers please be adviced that consumption of <%= consumable %> is only allowed in designated areas
-- Little <%= person %> is looking for parental units. Please contact information desk <%= flight %>
+- Little <%= person %> is looking for parental units. Please contact <%= service %> <%= flight %>
 - Please be adviced that it is not allowed to bring unauthorized <%= things %> to <%= region %> flights
 - Passenger <%= person %> proceed immediately to <%= gate %> <%= portal %>. You are delaying the <%= transport %>
 - Attention. Attention. This is not a test.
