@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/c-base/station-announcer#readme",
   "dependencies": {
-    "noflo": "^0.8.3",
+    "noflo": "^1.0.0",
     "noflo-filesystem": "^2.0.0",
     "noflo-groups": "^0.2.0",
     "noflo-math": "^0.2.0",
