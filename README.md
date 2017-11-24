@@ -3,6 +3,8 @@ c-base station announcer [![Build Status](https://travis-ci.org/c-base/station-a
 
 [c-base](https://c-base.org) is a space station, and space stations have announcements. This project can produce them. Plenty of!
 
+**[Open in Flowhub](http://app.flowhub.io/#github/c-base/station-announcer)**
+
 ## Examples of output
 
 > Security advise. Due to intergalactic regulations, passengers are required to keep their antigravity generators with them at all times.
