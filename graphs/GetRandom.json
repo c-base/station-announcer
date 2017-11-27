@@ -33,7 +33,7 @@
             }
         },
         "out": {
-            "process": "station-announcer/GetRandomMember_kdvkv",
+            "process": "objects/GetRandomMember_kdvkv",
             "port": "out",
             "metadata": {
                 "x": 792,
@@ -45,8 +45,8 @@
     },
     "groups": [],
     "processes": {
-        "station-announcer/GetRandomMember_kdvkv": {
-            "component": "station-announcer/GetRandomMember",
+        "objects/GetRandomMember_kdvkv": {
+            "component": "objects/GetRandomMember",
             "metadata": {
                 "label": "GetRandomMember",
                 "x": 504,
@@ -126,7 +126,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "station-announcer/GetRandomMember_kdvkv",
+                "process": "objects/GetRandomMember_kdvkv",
                 "port": "in"
             },
             "metadata": {
@@ -165,7 +165,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "station-announcer/GetRandomMember_kdvkv",
+                "process": "objects/GetRandomMember_kdvkv",
                 "port": "random"
             },
             "metadata": {
