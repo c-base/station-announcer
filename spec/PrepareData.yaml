@@ -8,16 +8,26 @@ cases:
       in: "data"
     expect:
       out:
-        includeKeys:
-          - consumable
-          - gate
-          - identification
-          - person
-          - problem
-          - region
-          - service
-          - spaceline
-          - spaceport
-          - things
-          - timeunit
-          - transport
+        -
+          includeKeys:
+            - consumable
+            - gate
+            - identification
+            - person
+            - problem
+            - region
+            - service
+            - spaceline
+            - spaceport
+            - things
+            - timeunit
+            - transport
+        -
+          path: '$.gate'
+          type: string
+        -
+          path: '$.identification'
+          type: string
+        -
+          path: '$.person'
+          type: string
