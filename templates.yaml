@@ -1,17 +1,17 @@
 - <%= spaceline %> <%= transport %> <%= flight %> to <%= spaceport %> is now boarding at <%= gate %> <%= portal %>
 - <%= spaceline %> <%= transport %> <%= flight %> to <%= spaceport %> is leaving from <%= gate %> <%= portal %>
-- Security advice. Due to <%= region %> regulations, passengers are required to keep their <%= things %> with them at all times.
+- Security advise. Due to <%= region %> regulations, passengers are required to keep their <%= things %> with them at all times.
 - <%= spaceline %> <%= transport %> to <%= spaceport %> has been delayed due to <%= problem %>
 - <%= spaceline %> <%= transport %> to <%= spaceport %> has been delayed due to <%= problem %>. Estimated departure in <%= flight %> <%= timeunit %>
 - <%= spaceline %> <%= transport %> to <%= spaceport %> has been cancelled due to <%= problem %>
-- Passengers please be adviced that consumption of <%= consumable %> is only allowed in designated areas
+- Passengers please be advised that consumption of <%= consumable %> is only allowed in designated areas
 - Little <%= person %> is looking for parental units. Please contact <%= service %> <%= flight %>
-- Please be adviced that it is not allowed to bring unauthorized <%= things %> to <%= region %> flights
+- Please be advised that it is not allowed to bring unauthorized <%= things %> to <%= region %> flights
 - Passenger <%= person %> proceed immediately to <%= gate %> <%= portal %>. You are delaying the <%= transport %>
 - Attention. Attention. This is not a test.
 - Passengers from <%= spaceport %> please proceed to <%= identification %> control and <%= region %> customs clearance
 - Passenger <%= person %> please contact <%= service %> <%= portal %>
 - Public service announcement. This is a round world, not a flat one
-- Passengers to Berlin Brandenburg International. Please be adviced that the spaceport is unlikely to ever exist in this spacetime continuum
+- Passengers to Berlin Brandenburg International. Please be advised that the spaceport is unlikely to ever exist in this spacetime continuum
 - <%= spaceline %> would like to remind you that carriage of <%= consumable %> across <%= region %> borders requires a permit
 - <%= spaceline %> <%= transport %> from <%= spaceport %> has docked with c-base space station
