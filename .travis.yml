@@ -4,8 +4,7 @@ node_js:
 services:
 - docker
 before_script:
-- docker build -t cbase/station-announcer:${TRAVIS_TAG} .
-- docker tag cbase/station-announcer:${TRAVIS_TAG} cbase/station-announcer:latest
+- docker build -t cbase/station-announcer:latest .
 - docker-compose up -d
 - docker-compose ps
 script:
@@ -20,14 +19,12 @@ deploy:
     tags: true
     repo: c-base/station-announcer
 - provider: script
-  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push
-    "cbase/station-announcer:latest"
+  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker tag cbase/station-announcer:latest "cbase/station-announcer:${TRAVIS_TAG}" && docker push "cbase/station-announcer:${TRAVIS_TAG}"
   on:
     tags: true
     repo: c-base/station-announcer
 - provider: script
-  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push
-    "cbase/station-announcer:${TRAVIS_TAG}"
+  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push "cbase/station-announcer:latest"
   on:
     branch: master
     repo: c-base/station-announcer
