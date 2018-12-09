@@ -1,0 +1,18 @@
+version: '2'
+services:
+  mqtt:
+    image: ansi/mosquitto
+    container_name: c-beam
+    ports:
+      - '1883:1883'
+    entrypoint: /usr/local/sbin/mosquitto
+  announcer:
+    image: cbase/station-announcer
+    container_name: station-announcer
+    environment:
+      MSGFLO_BROKER: 'mqtt://mqtt:1883'
+    links:
+      - mqtt
+    volumes:
+      - ./graphs:/var/station-announcer/graphs
+      - ./spec:/var/station-announcer/spec
