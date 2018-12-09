@@ -4,8 +4,9 @@
   "description": "c-base station announcer",
   "main": "index.js",
   "scripts": {
-    "test": "fbp-spec --command \"./node_modules/.bin/noflo-nodejs --register=false --secret=foo --port 3680\" --address \"ws://localhost:3680\" --secret foo spec",
-    "postinstall": "./node_modules/.bin/noflo-cache-preheat"
+    "test": "fbp-spec --command \"noflo-nodejs --register=false --secret=foo --port 3680\" --address \"ws://localhost:3680\" --secret foo spec",
+    "postinstall": "noflo-cache-preheat",
+    "start": "noflo-runtime-msgflo --name station-announcer --cache=true --basedir . --graph station-announcer/StationAnnouncer"
   },
   "bin": {
     "station-announcer": "./bin/station-announcer",

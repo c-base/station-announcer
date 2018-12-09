@@ -1,14 +1,34 @@
 language: node_js
 node_js:
-- 'lts/*'
+- lts/*
+services:
+- docker
+before_script:
+- docker build -t cbase/station-announcer:latest .
+- docker-compose up -d
+- docker-compose ps
 script:
 - npm test
-- ./bin/station-announcer-textonly
+- "./bin/station-announcer-textonly"
 deploy:
-  provider: npm
+- provider: npm
   email: henri.bergius@iki.fi
   api_key:
     secure: eDK1XD3LowExXoCZM22pSs5P3qFZleWPLpyYORh5So1JEBYNbk5ZyuxRIyrAA9bPq+RcEV29GxIw5gb0D0sGqGSxqGTndutu8dn8Dxn8aWgPL6eBPXVTy0HUs7hK8JoKcf4j9DvCPszQ38Y48zAv7DHerDjQ/4H5eMDgnaiLGOBxyO/QoU96Fag5gPVAhvkG1P51hAI5pJ6jmxo7r9tYO/49d3rgxPXHfv13kXQPOBwrtWvgScBNHjIvf5aoBfBlLgFYXEpOPakINz99cIbLkFN+HOJSGKkHDvlZQvgo2BiTE4mA3rj7dOKG5+V7EPKmryL/bLkmSBtWiSF06LYRd5P/CPOoGojwRBV/shDf7BHhlqYn0WIPtTRp7fG2m29JHK2Fd1GgsowYjpLUVirndRDciz5fWNh83xhY5tWv7EnLLhb3JvPqgTpYf+w1DXMbXSpIDB+7Xy5NzbqAEOrIdhPjQSPFs/W9omka3btY7l70bEEUVOeRtjEoD6RLShN1nsmck6FM7YBa2YKqKsfSJHGBhBxL7CBx84s/9PTq+cQ5XOpV1WlvTaWwQP0wN6XBDvuk2MhZdgG7y/VQ9iChL9ODTvOw4JLi0E1OBbb1M2Hw4IiPBcH6j4aZmvdwtoVPUPbTdOdlMxeKR5YFC4ZUGeFUyDMh5OMA793uKLZqrG8=
   on:
     tags: true
     repo: c-base/station-announcer
+- provider: script
+  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker tag cbase/station-announcer:latest "cbase/station-announcer:${TRAVIS_TAG}" && docker push "cbase/station-announcer:${TRAVIS_TAG}"
+  on:
+    tags: true
+    repo: c-base/station-announcer
+- provider: script
+  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push "cbase/station-announcer:latest"
+  on:
+    branch: master
+    repo: c-base/station-announcer
+env:
+  global:
+  - secure: BLXqOuMepdtEPn0UhYd1MO3uStGrYVPJIxwlD+u7kY9JOlB3Eaq0YPoM1HOzTH67EzwF04hBij9g/g+/DASzvh7SMKimhNDQ2CQKCX84AWxkBxLYjOvTzb9RZfftwXC/ANj8taWZu8UT0vlDK8Lo2wbUoxEuFnYOFr42o7s9i9U7HALSK695uSyirB4Sa+UB2R6V8uH3rMjfQWSU3SbUuu+2/2OqBR7ySHS5nLc+DJLwIbWRswZSRT4FvyH2L1TB9aknegDrZ59iqUSVY5AfTAF9l1km7JQtP4UJx+d/jbMxygxY/s40AMc9Q0gExFKXRQMPklgRpSevGH8PTZLtaL38ny9reEIkt9UxFzLPhSVC0JKmUcGtAY5XnDf8KuciHPCCgQMg++mmu8zgmthFSL7Ic5mVOtBmsdZHDq7D1hL89KC0XlXYV7IuQ8A80BiE8G2Tb3C6bN14I698uYx12UYQ8qaP3jYb8V4c1dleAexTkLFjgK0xnAeGY0/B0nh+S9+W0yvi8d0eFyACBn8eNMYnzK01WS936sg7JVrKG19GuGbmdVwRaTrhTMDvIh+D9ETAt4FFC4yjoE2L4YzDcvscc2weLeGPhlTv77llyS7ViiMvNFx9kHDqabqdoJG3DhYfFZQ4At+7FrxTIKZuLNUBzm+UG9ui+UJEbUh6J3Y=
+  - secure: sOBfJjiuMMXkMAor3v1HXh9P9k2AjLlgim+0tPY2HUIG3/GqMtc7ainNcGY1OtPh5fUFytvhEurSx0RDx1B5yD7KV+aHC38EPrrWW5X4KJLd0fNBifaY7scisivYn5eMT7Fh0X42ipwgBDhBu+trOYWMJE3jrIvToI4XXann5agINV4aTCsSR0KnNBUs+NYONfX5J7mNg2oW9cqmcegZhGRs6GlRH6nnrDT6V6hZjS0GL4ujEy1fsc441ky8xTDknlfZ5R4TUh4sBwdEXi1ao1AqKPHVgXMBSbW5B78GlgB3VqK9BjwWRgCoufZlU5vJuFDZy5C0ftCwLfHENLt7uzQbiyhXOL+V0yVz7C0XABa2giy1EstYBTG1sNUkyk6V3etm07frR//A+3p2q1mGCEPbX2jEjxL9JYicW16aUOj5K5oEZn2pul/s/4QaiLJwesrSSoWnhFFbC4QFmFZf8VeAd0zWnMoee87JTotiOPcYOKhSnRKqFMYazee1OqVKX9ptfI48XyW57wmbUPQHkHX2kok4tiwg4vp2ueymXiegeeeq3MuZKVIrjqWi2trMhQyK8pdiqauTSZVYX3nTEcD4Sh1EsAJTwHQQITtiFFZdzeevEQ/M7WiubB13F+16xZRPD1TmMkQN6NYMWFyv0xQTjllAmZCm8H9FfHXDijQ=

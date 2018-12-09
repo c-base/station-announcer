@@ -1,6 +1,7 @@
 [Service]
 WorkingDirectory=/opt/station-announcer
-ExecStart=/usr/bin/node --max-old-space-size=100 ./node_modules/.bin/noflo-runtime-msgflo --broker=mqtt://10.0.1.17 --name station-announcer --cache=true --basedir /opt/station-announcer --graph station-announcer/StationAnnouncer 
+ExecStart=/usr/bin/npm start
+Environment=MSGFLO_BROKER=mqtt://10.0.1.17
 Restart=always
 User=bergie
 
