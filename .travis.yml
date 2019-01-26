@@ -4,9 +4,13 @@ node_js:
 services:
 - docker
 before_script:
+# Prepare cross-compiling environment if targeting ARM
+- if [ "$TARGET" == "raspberrypi3" ]; then docker run --rm --privileged multiarch/qemu-user-static:register --reset; fi
+# Build the Docker image
+- docker build -t "${DOCKER_IMAGE}:latest" -f $DOCKER_FILE .
 - docker build -t cbase/station-announcer:latest .
-- docker-compose up -d
-- docker-compose ps
+- docker-compose -f $COMPOSE_FILE up -d
+- docker-compose -f $COMPOSE_FILE ps
 script:
 - npm test
 - "./bin/station-announcer-textonly"
@@ -19,12 +23,12 @@ deploy:
     tags: true
     repo: c-base/station-announcer
 - provider: script
-  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker tag cbase/station-announcer:latest "cbase/station-announcer:${TRAVIS_TAG}" && docker push "cbase/station-announcer:${TRAVIS_TAG}"
+  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker tag cbase/station-announcer:latest "${DOCKER_IMAGE}:${TRAVIS_TAG}" && docker push "${DOCKER_IMAGE}:${TRAVIS_TAG}"
   on:
     tags: true
     repo: c-base/station-announcer
 - provider: script
-  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push "cbase/station-announcer:latest"
+  script: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push "${DOCKER_IMAGE}:latest"
   on:
     branch: master
     repo: c-base/station-announcer
@@ -32,3 +36,8 @@ env:
   global:
   - secure: BLXqOuMepdtEPn0UhYd1MO3uStGrYVPJIxwlD+u7kY9JOlB3Eaq0YPoM1HOzTH67EzwF04hBij9g/g+/DASzvh7SMKimhNDQ2CQKCX84AWxkBxLYjOvTzb9RZfftwXC/ANj8taWZu8UT0vlDK8Lo2wbUoxEuFnYOFr42o7s9i9U7HALSK695uSyirB4Sa+UB2R6V8uH3rMjfQWSU3SbUuu+2/2OqBR7ySHS5nLc+DJLwIbWRswZSRT4FvyH2L1TB9aknegDrZ59iqUSVY5AfTAF9l1km7JQtP4UJx+d/jbMxygxY/s40AMc9Q0gExFKXRQMPklgRpSevGH8PTZLtaL38ny9reEIkt9UxFzLPhSVC0JKmUcGtAY5XnDf8KuciHPCCgQMg++mmu8zgmthFSL7Ic5mVOtBmsdZHDq7D1hL89KC0XlXYV7IuQ8A80BiE8G2Tb3C6bN14I698uYx12UYQ8qaP3jYb8V4c1dleAexTkLFjgK0xnAeGY0/B0nh+S9+W0yvi8d0eFyACBn8eNMYnzK01WS936sg7JVrKG19GuGbmdVwRaTrhTMDvIh+D9ETAt4FFC4yjoE2L4YzDcvscc2weLeGPhlTv77llyS7ViiMvNFx9kHDqabqdoJG3DhYfFZQ4At+7FrxTIKZuLNUBzm+UG9ui+UJEbUh6J3Y=
   - secure: sOBfJjiuMMXkMAor3v1HXh9P9k2AjLlgim+0tPY2HUIG3/GqMtc7ainNcGY1OtPh5fUFytvhEurSx0RDx1B5yD7KV+aHC38EPrrWW5X4KJLd0fNBifaY7scisivYn5eMT7Fh0X42ipwgBDhBu+trOYWMJE3jrIvToI4XXann5agINV4aTCsSR0KnNBUs+NYONfX5J7mNg2oW9cqmcegZhGRs6GlRH6nnrDT6V6hZjS0GL4ujEy1fsc441ky8xTDknlfZ5R4TUh4sBwdEXi1ao1AqKPHVgXMBSbW5B78GlgB3VqK9BjwWRgCoufZlU5vJuFDZy5C0ftCwLfHENLt7uzQbiyhXOL+V0yVz7C0XABa2giy1EstYBTG1sNUkyk6V3etm07frR//A+3p2q1mGCEPbX2jEjxL9JYicW16aUOj5K5oEZn2pul/s/4QaiLJwesrSSoWnhFFbC4QFmFZf8VeAd0zWnMoee87JTotiOPcYOKhSnRKqFMYazee1OqVKX9ptfI48XyW57wmbUPQHkHX2kok4tiwg4vp2ueymXiegeeeq3MuZKVIrjqWi2trMhQyK8pdiqauTSZVYX3nTEcD4Sh1EsAJTwHQQITtiFFZdzeevEQ/M7WiubB13F+16xZRPD1TmMkQN6NYMWFyv0xQTjllAmZCm8H9FfHXDijQ=
+matrix:
+  include:
+  - env: TARGET=x86 DOCKER_IMAGE=cbase/station-announcer DOCKER_FILE=Dockerfile
+  - env: TARGET=raspberrypi3 DOCKER_IMAGE=cbase/raspberrypi3-station-announcer COMPOSE_FILE=docker-compose-raspberrypi3.yml DOCKER_FILE=Dockerfile-raspberrypi3
+    sudo: true
